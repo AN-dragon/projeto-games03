@@ -56,39 +56,50 @@ public class JogoController {
             jogosRepo.save(jogo);
         return "redirect:/jogos/list";
     }
-    /*=================================================<aqui>*/
 
     @RequestMapping("update/{id}")
     public String formUpdate(Model model, @PathVariable int id) {
-        Optional<Genero> genero = generosRepo.findById(id);
-        if(!genero.isPresent())
-            return "redirect:/generos/list";
-        model.addAttribute("genero", genero.get());
-        return "/generos/update.jsp";
+        Optional<Jogo> jogo = jogosRepo.findById(id);
+        if(!jogo.isPresent())
+            return "redirect:/jogos/list";
+        model.addAttribute("jogo", jogo.get());
+        model.addAttribute("generos", generosRepo.findAll());
+        model.addAttribute("plataformas", plataformasRepo.findAll());
+        return "/jogos/update.jsp";
     }
 
     @RequestMapping(value = "update", method = RequestMethod.POST)
-    public String saveUpdate(@RequestParam("nome") String nome, @RequestParam("id") int id) {
-        Optional<Genero> genero = generosRepo.findById(id);
-        if(!genero.isPresent())
-            return "redirect:/generos/list";
-        genero.get().setNome(nome);
-        generosRepo.save(genero.get());
-        return "redirect:/generos/list";
+    public String saveUpdate(@RequestParam("titulo") String titulo, @RequestParam("id") int id,
+        @RequestParam("genero") int generoId, @RequestParam(name="plataformas", required=false)int[] plataformas) {
+        Optional<Jogo> jogo = jogosRepo.findById(id);
+        if(!jogo.isPresent())
+            return "redirect:/jogos/list";
+        jogo.get().setTitulo(titulo);
+        jogo.get().setGenero(generosRepo.findById(generoId).get());
+        Set<Plataforma> updatePlataforma = new HashSet<>();
+        if(plataformas != null)
+            for(int p : plataformas) {
+                Optional<Plataforma> plataforma = plataformasRepo.findById(p);
+                if(plataforma.isPresent())
+                    updatePlataforma.add(plataforma.get());
+            }
+        jogo.get().setPlataformas(updatePlataforma);
+        jogosRepo.save(jogo.get());
+        return "redirect:/jogos/list";
     }
 
     @RequestMapping("delete/{id}")
     public String formDelete(Model model, @PathVariable int id) {
-        Optional<Genero> genero = generosRepo.findById(id);
-        if(!genero.isPresent())
-            return "redirect:/generos/list";
-        model.addAttribute("genero", genero.get());
-        return "/generos/delete.jsp";
+        Optional<Jogo> jogo = jogosRepo.findById(id);
+        if(!jogo.isPresent())
+            return "redirect:/jogos/list";
+        model.addAttribute("jogo", jogo.get());
+        return "/jogos/delete.jsp";
     }
 
     @RequestMapping(value = "delete", method = RequestMethod.POST)
     public String saveDelete(@RequestParam("id") int id) {
-        generosRepo.deleteById(id);
-        return "redirect:/generos/list";
+        jogosRepo.deleteById(id);
+        return "redirect:/jogos/list";
     }
 }
