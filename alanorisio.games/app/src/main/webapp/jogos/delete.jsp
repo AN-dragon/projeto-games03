@@ -5,22 +5,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Novo Gênero</title>
+    <title>Remover Jogo</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
     <%@include file="../menubar.jsp" %>
     <main class="container">
-        <h1>Novo Gênero</h1>
-        <form action="insert" method="POST">
-            <div class="form-group">
-                <label for="nome">Nome</label>
-                <input type="text" name="nome" class="form-control" placeholder="Nome do Gênero">
-            </div>
+        <h1>Remover Jogo</h1>
+        <p>Deseja remover o jogo "${jogo.titulo}" da base de dados?</p>
 
-            <a href="/generos/list" class="btn btn-secondary">Voltar</a>
-            <input class="btn btn-success" type="submit" value="Salvar" />
+        <form action="/jogos/delete" method="POST">
+            <input type="hidden" name="id" value="${jogo.id}" />
+            <a href="/jogos/list" class="btn btn-secondary">Voltar</a>
+            <input class="btn btn-danger" type="submit" value="Excluir" />
         </form>
     </main>
+    
 </body>
 </html>
