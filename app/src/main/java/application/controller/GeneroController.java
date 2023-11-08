@@ -1,3 +1,5 @@
+package application.controller;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,8 +10,8 @@ import org.springframework.ui.Model;
 
 import java.util.Optional;
 
-import alanorisio.games.models.Genero;
-import alanorisio.games.repositories.GeneroRepository;
+import application.model.Genero;
+import application.model.GeneroRepository;
 
 @Controller
 @RequestMapping("/generos")

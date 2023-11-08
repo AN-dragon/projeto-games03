@@ -1,3 +1,5 @@
+package application.controller;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,8 +10,8 @@ import org.springframework.ui.Model;
 
 import java.util.Optional;
 
-import alanorisio.games.models.Plataforma;
-import alanorisio.games.repositories.PlataformaRepository;
+import application.model.Plataforma;
+import application.model.PlataformaRepository;
 
 @Controller
 @RequestMapping("/plataformas")
@@ -58,7 +60,7 @@ public class PlataformaController {
 
     @RequestMapping("delete/{id}")
     public String formDelete(Model model, @PathVariable int id) {
-        Optional<Plataforma> plataforma = plataformaRepo.findById(id);
+        Optional<Plataforma> plataforma = plataformasRepo.findById(id);
         if(!plataforma.isPresent())
             return "redirect:/plataformas/list";
         model.addAttribute("plataforma", plataforma.get());

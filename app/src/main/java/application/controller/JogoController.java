@@ -1,3 +1,5 @@
+package application.controller;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,11 +12,11 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.HashSet;
 
-import alanorisio.games.models.Jogo;
-import alanorisio.games.repositories.JogoRepository;
-import alanorisio.games.models.Plataforma;
-import alanorisio.games.repositories.PlataformaRepository;
-import alanorisio.games.repositories.GeneroRepository;
+import application.model.Jogo;
+import application.model.JogoRepository;
+import application.model.Plataforma;
+import application.model.PlataformaRepository;
+import application.model.GeneroRepository;
 
 @Controller
 @RequestMapping("/jogos")

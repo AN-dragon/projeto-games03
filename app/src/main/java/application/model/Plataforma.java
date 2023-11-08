@@ -1,10 +1,12 @@
-import javax.persistance.Entity;
-import javax.persistance.Table;
-import javax.persistance.Id;
-import javax.persistance.GeneratedValue;
-import javax.persistance.GenerationType;
+package application.model;
 
-import javax.persistance.ManyToMany;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+
+import jakarta.persistence.ManyToMany;
 
 import java.util.Set;
 import java.util.HashSet;
@@ -12,7 +14,7 @@ import java.util.HashSet;
 @Entity
 @Table(name="plataformas")
 public class Plataforma {
-    @id
+    @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
 
     private int id;

@@ -1,6 +1,6 @@
 import org.springframework.data.repository.CrudRepository;
 
-import alanorisio.games.models.Genero;
+import application.model.Genero;
 
 public interface GeneroRepository extends CrudRepository<Genero, Integer> {
     
