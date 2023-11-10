@@ -1,6 +1,6 @@
-import org.springframework.data.repository.CrudRepository;
+package application.model;
 
-import application.model.Jogo;
+import org.springframework.data.repository.CrudRepository;
 
 public interface JogoRepository extends CrudRepository<Jogo, Integer> {
     

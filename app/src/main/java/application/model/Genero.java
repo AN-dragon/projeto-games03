@@ -22,6 +22,7 @@ public class Genero {
     @OneToMany(mappedBy = "genero")
     private Set<Jogo> jogos = new HashSet<>();
 
+    //get e set ID
     public void setId(int id) {
         this.id = id;
     }
@@ -29,13 +30,15 @@ public class Genero {
         return this.id;
     }
 
-    public void setNome(String nome) {
-        this.nome;
-    }
+    //get e set Nome
     public String getNome() {
-        return this.nome;
+        return nome;
+    }
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
+    //get e set setjogos
     public void SetJogos(Set<Jogo> jogos) {
         this.jogos = jogos;
     }
